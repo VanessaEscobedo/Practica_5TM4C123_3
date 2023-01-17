@@ -6,8 +6,7 @@ volatile uint16_t duty2;
 volatile uint16_t duty3;*/
 
 volatile uint16_t a; //volatil para poderla monitorear 
-volatile uint16_t b;
-volatile uint16_t c;
+volatile uint16_t color;
 
 
 uint16_t count;
@@ -31,17 +30,35 @@ int main(void)
     duty2=15999;
     duty3=15999;*/
 
-    a=4000;
+    /*a=1;
     b=16000;
-    c=5000;
+    c=5000;*/
 
     while (1)
     {
-        a = (int)readChar(); //recibir un dato 
+        color = readChar();
+        
+        switch (color)
+        {
+            case 'r':
+                a = (int)readChar(); //recibe el % del uart para calcular el dc%
+                PWM0->_0_CMPB = 20000-((int)(a*10000)/50); //PB7 (R)
+            break;
 
-        PWM0->_0_CMPB = (int)(a*10000)/50; //recibe el porcentaje del uart para calcular el ciclo de trabajo
-        PWM0->_1_CMPA = (int)(b*10000)/50;
-        PWM0->_2_CMPA = (int)(c*10000)/50;
+            case 'g':
+                a = (int)readChar();
+                PWM0->_1_CMPA = 20000-((int)(a*10000)/50); //PB4 (G)
+            break;
+
+            case 'b':
+                a = (int)readChar();
+                PWM0->_2_CMPA = 20000-((int)(a*10000)/50); //PE4 (B)
+            break;
+
+            default:
+                a=1;
+            break;
+        }   
     }
 }
 

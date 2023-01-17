@@ -47,7 +47,7 @@ extern void Configura_Reg_PWM1(uint16_t freq)
     PWM0->_0_LOAD = 20000; //cuentas (carga = fclk/fpwm)
     PWM0->_1_LOAD = 20000;  
     PWM0->_2_LOAD = 20000; 
-    PWM0->_0_CMPB = 12000; //ciclo de trabajo (%)
+    PWM0->_0_CMPB = 1; //ciclo de trabajo (%)
     PWM0->_1_CMPA = 400; 
     PWM0->_2_CMPA = 8000; 
 
