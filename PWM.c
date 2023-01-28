@@ -14,6 +14,8 @@ extern void Configura_Reg_PWM1(uint16_t freq)
     SYSCTL->RCC &= ~(1<<20); //deshabilitar divisor (RCC) p. 254 
     //# cuentas = 20,000,000/1,000 = 20000
     //el divisor se habilita si el numero de cuentas es mayor a 65 mil (16 bits)
+
+    //NOTA: se tomo una frecuencia de 1 kHz y no de 50 Hz porque la tiva chica presenta errores con el divisor 
                                                     
     GPIOB->AFSEL |= (1<<4); //habilitar funciones alternativas (AFSEL) p. 672
     GPIOB->AFSEL |= (1<<7); 
@@ -47,7 +49,7 @@ extern void Configura_Reg_PWM1(uint16_t freq)
     PWM0->_0_LOAD = 20000; //cuentas (carga = fclk/fpwm)
     PWM0->_1_LOAD = 20000;  
     PWM0->_2_LOAD = 20000; 
-    PWM0->_0_CMPB = 1; //ciclo de trabajo (%)
+    PWM0->_0_CMPB = 1; //ciclo de trabajo inicial (%)
     PWM0->_1_CMPA = 400; 
     PWM0->_2_CMPA = 8000; 
 

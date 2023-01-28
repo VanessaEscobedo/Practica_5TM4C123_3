@@ -63,7 +63,7 @@ extern char readChar(void) //función para recibir un dato
     }
 }*/
 
-extern char * readString(char delimitador) //leer una cadena
+/*extern char * readString(char delimitador) //leer una cadena
 {
    int i=0;
    char *string = (char *)calloc(10,sizeof(char));
@@ -80,5 +80,5 @@ extern char * readString(char delimitador) //leer una cadena
    }
 
    return string;
-}
+}*/
 
